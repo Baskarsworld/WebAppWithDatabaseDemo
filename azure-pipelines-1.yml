@@ -13,7 +13,7 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: DotNetCoreCLI@1
+- task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
     projects: '**/*.csproj'
@@ -24,13 +24,13 @@ steps:
     projects: '**/*.csproj'
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
-- task: DotNetCoreCLI@3
+- task: DotNetCoreCLI@2
   inputs:
     command: 'test'
     projects: '**/*[Tt]est/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
     testRunTitle: 'Test Application'
-- task: DotNetCoreCLI@4
+- task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     publishWebProjects: true
